@@ -1,0 +1,21 @@
+framework:
+    test: ~
+    secret: test
+
+services:
+    logger:
+        class: Mgid\KafkaBundle\Tests\Fixtures\Logger
+        public: true
+        autowire: true
+
+    Mgid\KafkaBundle\Tests\Fixtures\Consumer\DemoConsumer:
+        class: Mgid\KafkaBundle\Tests\Fixtures\Consumer\DemoConsumer
+        public: true
+        autowire: true
+        calls:
+            - ['setLogger', ['@logger']]
+
+    Mgid\KafkaBundle\Tests\Fixtures\DependencyInjection\:
+        resource: '../../DependencyInjection/*'
+        public: true
+        autowire: true
